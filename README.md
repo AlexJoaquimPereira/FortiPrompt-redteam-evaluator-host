@@ -5,7 +5,6 @@ Accepts prompt/response pairs (or raw OpenAI payloads), runs the full WildGuard
 evaluation, persists results to MongoDB Atlas, and returns structured JSON to
 your React frontend.
 
----
 
 ## Architecture
 
@@ -28,8 +27,8 @@ FastAPI  (api.py  •  Uvicorn)          ← runs on EC2 / SageMaker
      └─► SessionStore  (session_store.py)
               └── MongoDB Atlas (remote)
 ```
+<img width="1366" height="1044" alt="image" src="https://github.com/user-attachments/assets/1544304d-5dc3-4e2c-aade-34e69937c3eb" />
 
----
 
 ## Quick start
 
@@ -62,7 +61,6 @@ uvicorn api:app --host 0.0.0.0 --port 8000
 
 Interactive docs available at `http://localhost:8000/docs`.
 
----
 
 ## Endpoints
 
@@ -76,7 +74,6 @@ Interactive docs available at `http://localhost:8000/docs`.
 | `GET`  | `/sessions` | List sessions (`?model=` `?attack=` filters) |
 | `GET`  | `/sessions/{id}` | Get a session with all its turns |
 
----
 
 ## Postman
 
@@ -88,7 +85,6 @@ Import both files into Postman:
 For production, duplicate the environment file and change `base_url` to your
 EC2 public IP or domain.
 
----
 
 ## Target LLM backends
 
@@ -104,7 +100,6 @@ Set `LLM_BACKEND` in `.env`:
 | `ollama` | Ollama local server | `LLM_MODEL` (e.g. `llama3`) |
 | `custom` | Any OpenAI-compatible endpoint | `LLM_BASE_URL`, `LLM_API_KEY` |
 
----
 
 ## AWS deployment
 
@@ -136,7 +131,6 @@ uvicorn api:app --host 0.0.0.0 --port 8000 &
 Use SageMaker's pre-signed URL or expose via an Application Load Balancer
 if you need external access.
 
----
 
 ## React frontend integration
 
@@ -168,7 +162,6 @@ const metrics = await fetch(`${API_BASE}/report?model=gpt-4o`).then(r => r.json(
 // metrics.heatmap.matrix   → 2D array for heatmap rendering
 ```
 
----
 
 ## Response schema
 
